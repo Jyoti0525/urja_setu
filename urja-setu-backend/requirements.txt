@@ -1,0 +1,21 @@
+# URJA-SETU backend
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.9
+pydantic-settings>=2.5
+python-dotenv>=1.0
+httpx>=0.27
+
+# Sprint 2 — live intelligence
+groq>=0.13              # free LLM (Llama 3.3 70B)
+langgraph>=0.2          # agent orchestration
+yfinance>=0.2           # commodity prices (Brent BZ=F)
+numpy>=2.0              # scoring / deterministic engine
+
+# Sprint 3 — cascade engine + knowledge-graph procurement
+networkx>=3.3           # knowledge graph
+
+# Added in later sprints (roadmap; commented to keep install light):
+# sentence-transformers>=3.0   # Sprint 4 — embeddings (RAG/backtest)
+# psycopg[binary]>=3.2   # persistence
+# redis>=5.0             # persistence

@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 antialiased;
+}
+
+/* MapLibre attribution: subtle on dark theme */
+.maplibregl-ctrl-attrib {
+  background: rgba(2, 6, 23, 0.6) !important;
+}
+.maplibregl-ctrl-attrib a {
+  color: #94a3b8 !important;
+}

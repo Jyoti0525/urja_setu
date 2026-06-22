@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "urja-setu-agents"
+version = "0.1.0"
+description = "URJA-SETU LangGraph multi-agent layer (Risk, Scenario, Procurement, SPR)"
+requires-python = ">=3.11"
+dependencies = [
+    # Added in Sprint 2:
+    # "langgraph>=0.2",
+    # "groq>=0.13",
+    "pydantic>=2.9",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["urja_setu_agents"]
