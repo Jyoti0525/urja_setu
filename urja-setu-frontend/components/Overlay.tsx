@@ -2,6 +2,7 @@
 
 import type { HealthResponse, LiveMeta, MapState, RiskSignal } from "@/lib/api";
 import { RISK_HEX, RISK_LABEL } from "@/lib/risk";
+import { NumberTicker } from "@/components/ui/number-ticker";
 
 export function Header({
   health,
@@ -92,7 +93,9 @@ function BrentChip({ usd, changePct }: { usd: number | null; changePct: number |
   return (
     <div className="rounded-xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs backdrop-blur">
       <span className="text-slate-400">Brent </span>
-      <span className="font-semibold tabular-nums text-slate-100">${usd.toFixed(2)}</span>
+      <span className="font-semibold text-slate-100">
+        $<NumberTicker value={usd} decimalPlaces={2} className="text-slate-100" />
+      </span>
       {changePct != null && (
         <span className={`ml-1 tabular-nums ${up ? "text-red-400" : "text-emerald-400"}`}>
           {up ? "▲" : "▼"}
@@ -196,7 +199,7 @@ export function Legend() {
     [RISK_HEX.critical, RISK_LABEL.critical],
   ];
   return (
-    <div className="absolute bottom-4 left-4 z-10 rounded-xl border border-slate-800 bg-slate-950/70 p-3 text-xs backdrop-blur">
+    <div className="absolute bottom-12 left-4 z-10 rounded-xl border border-slate-800 bg-slate-950/70 p-3 text-xs backdrop-blur">
       <p className="mb-2 uppercase tracking-wide text-slate-500">Corridor risk</p>
       <div className="flex gap-3">
         {items.map(([hex, label]) => (

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { api, type BacktestResult } from "@/lib/api";
+import { NumberTicker } from "@/components/ui/number-ticker";
 
 export function MetricsDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [data, setData] = useState<BacktestResult | null>(null);
@@ -37,10 +38,10 @@ export function MetricsDrawer({ open, onClose }: { open: boolean; onClose: () =>
         {data && (
           <div className="space-y-5">
             <div className="grid grid-cols-2 gap-2">
-              <Metric label="Recall" value={`${Math.round(data.recall * 100)}%`} sub={`${data.events_detected}/${data.events_total} events caught`} tone="good" />
-              <Metric label="Precision" value={`${Math.round(data.precision * 100)}%`} sub={`${data.alerts_total} alerts raised`} tone="good" />
-              <Metric label="F1 score" value={data.f1.toFixed(2)} sub="recall × precision balance" tone="good" />
-              <Metric label="Avg lead-time" value={`${data.avg_lead_days} d`} sub="ahead of impact · 0d baseline" tone="good" />
+              <Metric label="Recall" value={<><NumberTicker value={Math.round(data.recall * 100)} />%</>} sub={`${data.events_detected}/${data.events_total} events caught`} tone="good" />
+              <Metric label="Precision" value={<><NumberTicker value={Math.round(data.precision * 100)} />%</>} sub={`${data.alerts_total} alerts raised`} tone="good" />
+              <Metric label="F1 score" value={<NumberTicker value={data.f1} decimalPlaces={2} />} sub="recall × precision balance" tone="good" />
+              <Metric label="Avg lead-time" value={<><NumberTicker value={data.avg_lead_days} decimalPlaces={1} /> d</>} sub="ahead of impact · 0d baseline" tone="good" />
             </div>
 
             <p className="text-[11px] text-slate-500">
@@ -95,7 +96,7 @@ function Metric({
   tone,
 }: {
   label: string;
-  value: string;
+  value: React.ReactNode;
   sub?: string;
   tone: "good" | "bad" | "warn";
 }) {

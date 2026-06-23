@@ -14,6 +14,7 @@ import {
 import { ScenarioDrawer } from "@/components/ScenarioDrawer";
 import { MetricsDrawer } from "@/components/MetricsDrawer";
 import { MaritimeTrafficPanel } from "@/components/MaritimeTrafficPanel";
+import { SignalTicker } from "@/components/SignalTicker";
 
 // MapLibre/deck.gl touch `window`; load client-only.
 const MapView = dynamic(() => import("@/components/MapView"), {
@@ -89,6 +90,7 @@ export default function Home() {
       <CorridorPanel data={data} />
       {data && <SignalPanel signals={data.signals} />}
       <Legend />
+      <SignalTicker data={data} />
       <ScenarioDrawer
         open={drawerOpen}
         onClose={() => {

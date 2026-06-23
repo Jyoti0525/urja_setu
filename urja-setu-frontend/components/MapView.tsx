@@ -93,12 +93,13 @@ function buildLayers(data: MapState, highlight: string | null, vessels: Vessel[]
     id: "refineries",
     data: data.refineries,
     getPosition: (r: Refinery) => [r.location.lon, r.location.lat] as [number, number],
-    getRadius: (r: Refinery) => Math.sqrt(r.capacity_kbd) * 1400,
-    radiusUnits: "meters",
-    radiusMinPixels: 5,
-    radiusMaxPixels: 30,
-    getFillColor: [16, 185, 129, 210],
-    getLineColor: [226, 252, 245, 200],
+    // Small, consistent pixel markers (subtly sized by capacity) — never balloon on zoom.
+    getRadius: (r: Refinery) => 4 + Math.sqrt(r.capacity_kbd) / 14,
+    radiusUnits: "pixels",
+    radiusMinPixels: 4,
+    radiusMaxPixels: 9,
+    getFillColor: [16, 185, 129, 220],
+    getLineColor: [226, 252, 245, 220],
     lineWidthMinPixels: 1.2,
     stroked: true,
     pickable: true,
@@ -209,9 +210,9 @@ export default function MapView({
       center: [60, 16],
       zoom: 3,
       minZoom: 2,
-      attributionControl: { compact: true },
+      attributionControl: false,
     });
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "bottom-right");
+    map.addControl(new maplibregl.AttributionControl({ compact: true }), "top-right");
     const overlay = new MapboxOverlay({ interleaved: false, layers: [], getTooltip });
     map.addControl(overlay as unknown as maplibregl.IControl);
     mapRef.current = map;
