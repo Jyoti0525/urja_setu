@@ -18,6 +18,15 @@ function embedUrl(r: Region): string {
   );
 }
 
+function Swatch({ color, label }: { color: string; label: string }) {
+  return (
+    <span className="flex items-center gap-1.5">
+      <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} />
+      <span>{label}</span>
+    </span>
+  );
+}
+
 export function MaritimeTrafficPanel({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [region, setRegion] = useState<Region>(REGIONS[0]);
   if (!open) return null;
@@ -60,9 +69,14 @@ export function MaritimeTrafficPanel({ open, onClose }: { open: boolean; onClose
           className="h-full w-full border-0"
         />
 
-        <div className="border-t border-slate-800 px-4 py-2 text-[11px] text-slate-500">
-          Real-time vessel positions from the global AIS network. Red = tankers · green = cargo ·
-          blue = other. Watch crude tankers transit the chokepoints live.
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-slate-800 px-4 py-2 text-[11px] text-slate-400">
+          <span className="font-medium text-slate-300">Live AIS vessel types:</span>
+          <Swatch color="#ef4444" label="Tankers" />
+          <Swatch color="#22c55e" label="Cargo" />
+          <Swatch color="#38bdf8" label="Passenger" />
+          <Swatch color="#a855f7" label="Tugs / special" />
+          <Swatch color="#f59e0b" label="Fishing" />
+          <span className="text-slate-500">▲ underway · ● anchored</span>
         </div>
       </div>
     </div>
