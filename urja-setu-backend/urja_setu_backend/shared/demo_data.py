@@ -33,34 +33,43 @@ from urja_setu_backend.shared.schemas import (
 # --- Real geography: India's crude lifelines ------------------------------------
 
 CORRIDORS: list[Corridor] = [
+    # Persian Gulf -> Strait of Hormuz -> Arabian Sea -> Jamnagar (west coast)
     Corridor(
         id="hormuz",
         name="Strait of Hormuz",
+        chokepoint=Coordinate(lat=26.57, lon=56.25),
         path=[
-            Coordinate(lat=26.57, lon=56.25), Coordinate(lat=25.5, lon=57.6),
-            Coordinate(lat=24.8, lon=60.2), Coordinate(lat=24.0, lon=63.2),
-            Coordinate(lat=23.2, lon=66.4), Coordinate(lat=22.7, lon=68.8),
-            Coordinate(lat=22.47, lon=70.06),
+            Coordinate(lat=29.5, lon=48.6), Coordinate(lat=28.0, lon=50.5),
+            Coordinate(lat=27.2, lon=53.2), Coordinate(lat=26.57, lon=56.25),
+            Coordinate(lat=25.4, lon=59.5), Coordinate(lat=24.0, lon=63.5),
+            Coordinate(lat=23.0, lon=67.2), Coordinate(lat=22.47, lon=70.06),
         ],
         throughput_share=0.42,
         disruption_probability=0.12,
         risk_level=RiskLevel.moderate,
     ),
+    # Suez -> down the Red Sea -> Bab-el-Mandeb -> Gulf of Aden -> Arabian Sea -> Mangalore
     Corridor(
         id="bab-el-mandeb",
         name="Bab-el-Mandeb / Red Sea",
+        chokepoint=Coordinate(lat=12.6, lon=43.3),
         path=[
-            Coordinate(lat=12.6, lon=43.3), Coordinate(lat=14.6, lon=42.2),
-            Coordinate(lat=17.2, lon=40.4), Coordinate(lat=20.2, lon=38.2),
-            Coordinate(lat=23.2, lon=36.4), Coordinate(lat=26.2, lon=34.7),
+            Coordinate(lat=29.3, lon=32.6), Coordinate(lat=27.0, lon=34.6),
+            Coordinate(lat=23.0, lon=37.4), Coordinate(lat=19.0, lon=40.0),
+            Coordinate(lat=15.5, lon=42.1), Coordinate(lat=12.6, lon=43.3),
+            Coordinate(lat=12.4, lon=47.5), Coordinate(lat=13.4, lon=53.0),
+            Coordinate(lat=14.2, lon=60.0), Coordinate(lat=13.6, lon=68.0),
+            Coordinate(lat=12.92, lon=74.86),
         ],
         throughput_share=0.10,
         disruption_probability=0.34,
         risk_level=RiskLevel.high,
     ),
+    # Atlantic -> Cape of Good Hope -> Arabian Sea -> Vadinar
     Corridor(
         id="cape-good-hope",
         name="Cape of Good Hope",
+        chokepoint=Coordinate(lat=-34.35, lon=18.47),
         path=[
             Coordinate(lat=-34.35, lon=18.47), Coordinate(lat=-30.0, lon=27.0),
             Coordinate(lat=-22.0, lon=38.0), Coordinate(lat=-12.0, lon=46.0),
@@ -71,9 +80,11 @@ CORRIDORS: list[Corridor] = [
         disruption_probability=0.02,
         risk_level=RiskLevel.low,
     ),
+    # East Asia -> Strait of Malacca -> Bay of Bengal -> Visakhapatnam (east coast)
     Corridor(
         id="malacca",
         name="Strait of Malacca",
+        chokepoint=Coordinate(lat=2.5, lon=101.0),
         path=[
             Coordinate(lat=2.5, lon=101.0), Coordinate(lat=5.5, lon=97.0),
             Coordinate(lat=7.5, lon=93.0), Coordinate(lat=10.0, lon=88.0),

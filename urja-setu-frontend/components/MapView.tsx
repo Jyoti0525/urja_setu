@@ -65,7 +65,10 @@ function buildLayers(data: MapState, highlight: string | null, vessels: Vessel[]
   const chokepoints = new ScatterplotLayer<Corridor>({
     id: "chokepoints",
     data: data.corridors,
-    getPosition: (c: Corridor) => [c.path[0].lon, c.path[0].lat] as [number, number],
+    getPosition: (c: Corridor) => {
+      const p = c.chokepoint ?? c.path[0];
+      return [p.lon, p.lat] as [number, number];
+    },
     getRadius: 5,
     radiusUnits: "pixels",
     getFillColor: (c: Corridor) => (c.id === highlight ? HIGHLIGHT : ([15, 23, 42, 255] as [number, number, number, number])),
@@ -110,7 +113,10 @@ function buildLayers(data: MapState, highlight: string | null, vessels: Vessel[]
   const chokepointLabels = new TextLayer<Corridor>({
     id: "chokepoint-labels",
     data: data.corridors,
-    getPosition: (c: Corridor) => [c.path[0].lon, c.path[0].lat] as [number, number],
+    getPosition: (c: Corridor) => {
+      const p = c.chokepoint ?? c.path[0];
+      return [p.lon, p.lat] as [number, number];
+    },
     getText: (c: Corridor) => CHOKEPOINT_SHORT[c.id] ?? c.name,
     getSize: 10.5,
     getColor: [241, 245, 249, 240],

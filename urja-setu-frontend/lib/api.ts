@@ -31,6 +31,7 @@ export interface Corridor {
   id: string;
   name: string;
   path: Coordinate[];
+  chokepoint?: Coordinate | null;
   throughput_share: number;
   disruption_probability: number;
   risk_level: RiskLevel;
