@@ -85,6 +85,7 @@ def run_live_risk() -> LiveMapResponse:
                 name=b.name,
                 path=b.path,
                 chokepoint=b.chokepoint,
+                origin_label=b.origin_label,
                 throughput_share=b.throughput_share,
                 disruption_probability=s["disruption_probability"],
                 risk_level=s["risk_level"],

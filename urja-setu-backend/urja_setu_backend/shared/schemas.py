@@ -55,6 +55,7 @@ class Corridor(BaseModel):
     name: str
     path: list[Coordinate]
     chokepoint: Coordinate | None = None  # the actual chokepoint (marker), distinct from route ends
+    origin_label: str | None = None  # gateway where the route originates (e.g. "Suez Canal")
     throughput_share: float = Field(ge=0.0, le=1.0, description="Fraction of India's crude transiting here")
     disruption_probability: float = Field(default=0.0, ge=0.0, le=1.0)
     risk_level: RiskLevel = RiskLevel.low

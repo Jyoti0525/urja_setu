@@ -167,7 +167,45 @@ function buildLayers(data: MapState, highlight: string | null, vessels: Vessel[]
     pickable: true,
   });
 
-  return [glow, corridors, vesselLayer, refineries, sources, chokepoints, refineryLabels, sourceLabels, chokepointLabels];
+  const originCorridors = data.corridors.filter((c) => !!c.origin_label);
+  const originGateways = new ScatterplotLayer<Corridor>({
+    id: "origin-gateways",
+    data: originCorridors,
+    getPosition: (c: Corridor) => [c.path[0].lon, c.path[0].lat] as [number, number],
+    getRadius: 3.5,
+    radiusUnits: "pixels",
+    getFillColor: [15, 23, 42, 255],
+    getLineColor: [148, 163, 184, 230],
+    lineWidthMinPixels: 1.4,
+    stroked: true,
+  });
+  const originLabels = new TextLayer<Corridor>({
+    id: "origin-labels",
+    data: originCorridors,
+    getPosition: (c: Corridor) => [c.path[0].lon, c.path[0].lat] as [number, number],
+    getText: (c: Corridor) => c.origin_label ?? "",
+    getSize: 9.5,
+    getColor: [203, 213, 225, 235],
+    getTextAnchor: "middle",
+    getAlignmentBaseline: "bottom",
+    getPixelOffset: [0, -9],
+    fontFamily: FONT,
+    ...labelOutline,
+  });
+
+  return [
+    glow,
+    corridors,
+    vesselLayer,
+    refineries,
+    sources,
+    chokepoints,
+    originGateways,
+    refineryLabels,
+    sourceLabels,
+    chokepointLabels,
+    originLabels,
+  ];
 }
 
 function getTooltip({ object, layer }: PickingInfo) {

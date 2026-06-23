@@ -38,6 +38,7 @@ CORRIDORS: list[Corridor] = [
         id="hormuz",
         name="Strait of Hormuz",
         chokepoint=Coordinate(lat=26.57, lon=56.25),
+        origin_label="Persian Gulf",
         path=[
             Coordinate(lat=29.5, lon=48.6), Coordinate(lat=28.0, lon=50.5),
             Coordinate(lat=27.2, lon=53.2), Coordinate(lat=26.57, lon=56.25),
@@ -53,6 +54,7 @@ CORRIDORS: list[Corridor] = [
         id="bab-el-mandeb",
         name="Bab-el-Mandeb / Red Sea",
         chokepoint=Coordinate(lat=12.6, lon=43.3),
+        origin_label="Suez Canal",
         path=[
             Coordinate(lat=29.3, lon=32.6), Coordinate(lat=27.0, lon=34.6),
             Coordinate(lat=23.0, lon=37.4), Coordinate(lat=19.0, lon=40.0),
